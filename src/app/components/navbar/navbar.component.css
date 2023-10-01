@@ -1,0 +1,5 @@
+/* Cambia el color del texto y subrayado al hacer hover */
+.pointer_:hover {
+    cursor: pointer;
+  }
+  

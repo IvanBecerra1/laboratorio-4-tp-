@@ -1,4 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
 @charset "UTF-8";
 /*!
 * Start Bootstrap - Freelancer v7.0.7 (https://startbootstrap.com/theme/freelancer)
@@ -11045,10 +11044,3 @@ html {
 .copyright {
   background-color: #1a252f;
 }
- /* Estilo personalizado para el botón flotante */
- .floating-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-  }
