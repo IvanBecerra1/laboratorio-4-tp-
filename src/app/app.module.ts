@@ -17,6 +17,8 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { SeccionesComponent } from './paginas/secciones/secciones.component';
 import { JuegosComponent } from './components/juegos/juegos.component';
 import { ChatComponent } from './components/chat/chat.component';
+import { AhorcadoComponent } from './components/juegos/ahorcado/ahorcado.component';
+import { MayorMenorComponent } from './components/juegos/mayor-menor/mayor-menor.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +29,9 @@ import { ChatComponent } from './components/chat/chat.component';
     HomeComponent,
     SeccionesComponent,
     JuegosComponent,
-    ChatComponent
+    ChatComponent,
+    AhorcadoComponent,
+    MayorMenorComponent
   ],
   imports: [
     BrowserModule,

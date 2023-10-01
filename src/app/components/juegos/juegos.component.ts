@@ -10,6 +10,7 @@ import { ChatServicioService } from 'src/app/servicio/chat-servicio.service';
 })
 export class JuegosComponent implements OnInit {
   estaLogeado! : EstadoAutenticacion;
+  juegoAhorcado : boolean = false;
 
   constructor(private login : SComunicacionService) {}
 
@@ -20,4 +21,8 @@ export class JuegosComponent implements OnInit {
     });
   }
 
+  iniciarAhorcado(){
+    this.juegoAhorcado = true;
+    console.log("test");
+  }
 }

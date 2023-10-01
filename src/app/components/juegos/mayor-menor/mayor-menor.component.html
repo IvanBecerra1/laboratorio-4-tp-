@@ -1,0 +1,64 @@
+<meta charset="utf-8" />
+<div class="row">
+    <div class="col text-center">
+        <h1 class="text-primary">Juego de Mayor-Menor</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col text-center">
+
+        <img *ngIf="!this.interrogacion" src="../../../../assets/mayor_menor/{{this.numero}}.jpg"
+            class="ahorcado-img" height="300px" width="300px" />
+
+        <img *ngIf="this.interrogacion" src="../../../../assets/mayor_menor/0.jpg" class="ahorcado-img" height="300px" width="300px" />
+        <h3>Puntos: <small>{{puntos}} </small></h3>
+
+        <div *ngIf="this.mostrarCargando">
+
+            <div class="spinner-grow text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-secondary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-success" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-danger" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-warning" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-info" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-dark" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+<div class="row">
+    <div class="col text-center" *ngIf="!this.perdio">
+        <button (click)="comprobar(numeros)" *ngFor="let numeros of numeros" class="btn btn-primary">
+            {{numeros}}
+        </button>
+    </div>
+</div>
+<div class="row" *ngIf="gano">
+    <div class="col text-center">
+        <h1 class="text-success">Felicidades! Ganaste!!! Sumaste un punto!!! :D</h1>
+    </div>
+</div>
+<div class="row" *ngIf="perdio">
+    <div class="col text-center">
+        <h3 class="text-danger">Lo siento :( Perdiste!</h3>
+        <h4 class="text-success">El numero era: {{numero}}</h4>
+    </div>
+</div>
