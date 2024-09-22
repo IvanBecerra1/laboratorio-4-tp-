@@ -1,47 +1,71 @@
-<meta charset="utf-8" />
-<div class="row">
-  <div class="col text-center">
-    <h1 class="text-primary">Juego del Ahorcado</h1>
-  </div>
-</div>
+<div class="container">
+  <meta charset="utf-8" />
+  <div class="row">
+    <div class="col text-center">
+      <h1 class="text-primary">Juego del Ahorcado</h1>
+      <h2 class="text-primary">Veces ganados: {{this.rondasGanadas}}</h2>
+      <h2 class="text-primary">Veces perdidas: {{this.rondasPerdidas}}</h2>
 
-<div class="row">
-  <div class="col text-center">
-    <img
-      src="../../../../assets/{{intentos}}.png"
-      class="ahorcado-img"
-      alt="Perdiste!!! Estás Ahorcado!!!"
-      title="Perdiste!!! Estás Ahorcado!!!"
-    />
-    <h3>Intentos: <small>{{intentos}} / 9 </small></h3>
+    </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="col text-center">
-    <h1>{{palabraOculta}}</h1>
+  <div class="row">
+    <div class="col text-center">
+      <img src="../../../../assets/{{intentos}}.png" class="ahorcado-img" alt="Perdiste!!! Estás Ahorcado!!!"
+        title="Perdiste!!! Estás Ahorcado!!!" height="300" width="300" />
+      <h3>Intentos: <small>{{intentos}} / 9 </small></h3>
+    </div>
   </div>
-</div>
 
-<div class="row" *ngIf="!gano && !perdio">
-  <div class="col text-center">
-    <button
-      (click)="comprobar(letra)"
-      *ngFor="let letra of letras"
-      class="btn btn-primary"
-    >
-      {{letra.toUpperCase()}}
-    </button>
+  <div class="row">
+    <div class="col text-center">
+      <h1>{{palabraOculta}}</h1>
+    </div>
+
+    <div *ngIf="this.mostrarCargando">
+
+      <div class="spinner-grow text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div class="spinner-grow text-secondary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div class="spinner-grow text-success" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div class="spinner-grow text-danger" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div class="spinner-grow text-warning" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div class="spinner-grow text-info" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div class="spinner-grow text-dark" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+
+    </div>
+
   </div>
-</div>
-<div class="row" *ngIf="gano">
-  <div class="col text-center">
-    <h1 class="text-success">Felicidades! Ganaste!!! :D</h1>
+
+  <div class="row" *ngIf="!gano && !perdio">
+    <div class="col text-center">
+      <button (click)="comprobar(letra)" *ngFor="let letra of letras" class="btn btn-primary">
+        {{letra.toUpperCase()}}
+      </button>
+    </div>
   </div>
-</div>
-<div class="row" *ngIf="perdio">
-  <div class="col text-center">
-    <h3 class="text-danger">Lo siento :( Perdiste!</h3>
-    <h4 class="text-success">La palabra correcta era: {{palabra}}</h4>
+  <div class="row" *ngIf="gano">
+    <div class="col text-center">
+      <h1 class="text-success">Felicidades! Ganaste!!! :D</h1>
+    </div>
+  </div>
+  <div class="row" *ngIf="perdio">
+    <div class="col text-center">
+      <h3 class="text-danger">Lo siento :( Perdiste!</h3>
+      <h4 class="text-success">La palabra correcta era: {{palabra}}</h4>
+    </div>
   </div>
 </div>

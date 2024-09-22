@@ -1,0 +1,6 @@
+.list-group {
+    display: flex;
+    flex-direction: column-reverse; /* Invertir la dirección del flujo */
+    overflow-y: auto; 
+  }
+  

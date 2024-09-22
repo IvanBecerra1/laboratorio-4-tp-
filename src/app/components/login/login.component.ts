@@ -12,6 +12,7 @@ export class LoginComponent {
   formulario : FormGroup;
   msgErrorClave! : string;
   msgErrorEmail! : string;
+  credencialesInvalido : boolean = false;
 
   constructor(private readonly builder : FormBuilder,
     private readonly router : Router,
@@ -41,6 +42,7 @@ export class LoginComponent {
     }
     else {
       console.log("LOGEADO: FALSE");
+      this.credencialesInvalido = true;
     }
     /*
     if (this.formulario.value.email == "ivan" && this.formulario.value.clave == "1234"){

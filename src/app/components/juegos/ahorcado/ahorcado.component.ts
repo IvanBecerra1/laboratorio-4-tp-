@@ -1,48 +1,66 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-ahorcado',
   templateUrl: './ahorcado.component.html',
   styleUrls: ['./ahorcado.component.css']
 })
-export class AhorcadoComponent {
+export class AhorcadoComponent implements OnInit {
   title = "Ahorcado";
-  palabra : any = prompt("Ingresa la palabra oculta:");
+  
+  palabras = [
+    "PELOTA",
+    "LAMPARA",
+    "MESSI",
+    "ARGENTINA"
+  ];
+
+
+  palabra : any = "";
+
+  mostrarCargando : boolean = false;
+  rondasGanadas : number = 0;
+  rondasPerdidas : number = 0;
+
   palabraOculta = "";
   intentos = 0;
   gano = false;
   perdio = false;
   letras = [
-    "a",
-    "b",
-    "c",
-    "d",
-    "e",
-    "f",
-    "g",
-    "h",
-    "i",
-    "j",
-    "k",
-    "l",
-    "m",
-    "n",
-    "o",
-    "p",
-    "q",
-    "r",
-    "s",
-    "t",
-    "u",
-    "v",
-    "w",
-    "x",
-    "y",
-    "z"
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z"
   ];
 
   constructor(){
     this.palabraOculta = "_ ".repeat(this.palabra.length);
+  }
+  ngOnInit(): void {
+    let numero : number = Math.floor(Math.random() * this.palabras.length) + 1;
+    this.palabra = this.palabras[numero];
   }
   comprobar(letra : any) {
     this.existeLetra(letra);
@@ -61,11 +79,18 @@ export class AhorcadoComponent {
     const palabraEvaluar = palabraArr.join("");
 
     if (palabraEvaluar === this.palabra) {
+      this.mostrarCargando = true;
       this.gano = true;
+      this.rondasGanadas++;
       console.log("Usuario GANO");
+
+      this.actualizarPalabra();
     }
     if (this.intentos === 9) {
+      this.mostrarCargando = true;
       this.perdio = true;
+      this.rondasPerdidas++;
+      this.actualizarPalabra();
       console.log("Usuario perdio");
     }
   }
@@ -76,5 +101,20 @@ export class AhorcadoComponent {
     } else {
       this.intentos++;
     }
+  }
+
+  
+  actualizarPalabra(){
+    setTimeout(() => {
+      console.log('Acción realizada después de 3 segundos');
+      let numero : number = Math.floor(Math.random() * this.palabras.length) + 1;
+      this.palabra = this.palabras[1];
+
+      this.perdio = false;
+      this.gano = false;
+      this.mostrarCargando = false;
+      this.intentos = 0;
+      this.palabraOculta = ""; 
+    }, 5000); 
   }
 }

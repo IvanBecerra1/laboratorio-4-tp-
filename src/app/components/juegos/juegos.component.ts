@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { EstadoAutenticacion } from 'src/app/service/entidades/EstadoAutenticacion';
 import { SComunicacionService } from 'src/app/service/s-comunicacion.service';
 import { ChatServicioService } from 'src/app/servicio/chat-servicio.service';
@@ -11,8 +12,14 @@ import { ChatServicioService } from 'src/app/servicio/chat-servicio.service';
 export class JuegosComponent implements OnInit {
   estaLogeado! : EstadoAutenticacion;
   juegoAhorcado : boolean = false;
+  juegoMayorMenor : boolean = false;
+  juegoCategoria : number = -1;
+  game = "";
 
-  constructor(private login : SComunicacionService) {}
+  advertenciaJuego : boolean = false;
+
+  constructor(private login : SComunicacionService, private readonly router : Router) {}
+
 
   ngOnInit() {
     this.login.estadoUsuario.subscribe(connect=>{
@@ -22,7 +29,31 @@ export class JuegosComponent implements OnInit {
   }
 
   iniciarAhorcado(){
+    if (this.estaLogeado.estalogeado == false){
+      this.advertenciaJuego = true;
+      return;
+    }
+   // this.router.navigateByUrl("/home/juegos/Ahorcado");
     this.juegoAhorcado = true;
-    console.log("test");
+    this.juegoMayorMenor = false;
+    this.game = "mayor-menor";
+  }
+
+  iniciarMayorMenor(){
+    if (this.estaLogeado.estalogeado == false){
+      this.advertenciaJuego = true;
+      return;
+    }
+
+    this.juegoAhorcado = false;
+    this.juegoMayorMenor = true;
+    this.game = "ahorcado";
+  }
+
+  cerrarJuego(){
+    this.game = "";
+  }
+  cerrarMensaje(){
+    this.advertenciaJuego = false;
   }
 }

@@ -13,6 +13,7 @@ import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword,signOu
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Usuario } from './entidades/Usuario';
 import { EstadoAutenticacion } from './entidades/EstadoAutenticacion';
+import { Mensajes } from './entidades/Mensajes';
 
 @Injectable({
   providedIn: 'root'
@@ -95,4 +96,16 @@ export class SComunicacionService {
       return false;
     }
   }
+
+  async guardarMensaje(mensaje : any){
+    const mensajeColeccion = collection(this.firestore, "chat_online");
+    
+    await addDoc(mensajeColeccion, mensaje);
+  }
+
+  cargarMensaje() : Observable<any[]> {
+    const mensajeColeccion = collection(this.firestore, "chat_online");
+    return collectionData(mensajeColeccion) as Observable<any[]>; // Esto debe ser un array
+  }
+  
 }

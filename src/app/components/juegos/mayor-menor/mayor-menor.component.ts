@@ -12,6 +12,8 @@ export class MayorMenorComponent implements OnInit {
   gano = false;
   perdio = false;
   numero : number = 0;
+  cartaAnterior : number = 0;
+
   numeros = [
     1,
     2,
@@ -27,21 +29,53 @@ export class MayorMenorComponent implements OnInit {
 
 
   ngOnInit(): void {
-   
-  }
-
-  comprobar(numero : any) {
-
     this.numero = Math.floor(Math.random() * 10) + 1;
-
-    this.interrogacion = false;
-
-    this.verificaGanador(this.numero, numero);
   }
 
-  verificaGanador(numeroAleatorio : any, numero : any) {
+  numeroMenor(){
+    let rondaGanador : boolean;
+    this.chequearNumero()
 
-    if (this.numero == numero){
+    if ( this.numero < this.cartaAnterior){
+      console.log("NUMERO MENOR: CARTA ANTERIOR: " + this.cartaAnterior + " CARTA NUEVA: " + this.numero);
+      rondaGanador = true;
+    }
+    else{
+      rondaGanador = false;
+      console.log("LA CARTA ES MAYOR, PERDISTE");
+
+    }
+    this.verificaGanador(rondaGanador);
+  };
+
+  numeroMayor(){
+    let rondaGanador : boolean;
+    this.chequearNumero()
+    if (this.numero > this.cartaAnterior){
+      console.log("NUMERO MAYOR: CARTA ANTERIOR: " + this.cartaAnterior + " CARTA NUEVA: " + this.numero);
+      rondaGanador = true;
+    }
+    else{
+      rondaGanador = false;
+      console.log("LA CARTA ES MENOR, PERDISTE");
+    }
+
+    this.verificaGanador(rondaGanador);
+  }
+
+  chequearNumero(){
+    do {
+      this.cartaAnterior = this.numero;
+      this.numero = Math.floor(Math.random() * 10) + 1;
+      console.log("numero nuevo: " + this.numero + " | carta Anterior: "+  this.cartaAnterior);
+
+    }while(this.numero == this.cartaAnterior);
+
+
+  }
+  verificaGanador(accion : boolean) {
+    this.mostrarCargando = true;
+    if (accion== true){
       this.puntos += 1;
       this.gano = true;
       console.log("Usuario GANO");
@@ -50,18 +84,19 @@ export class MayorMenorComponent implements OnInit {
       this.perdio = true;
       this.puntos = 0;
       console.log("Usuario perdio");
+      
     }
-    this.mostrarCargando = true;
+
 
     setTimeout(() => {
       console.log('Acción realizada después de 3 segundos');
 
+      
       this.mostrarCargando = false;
       this.gano = false;
       this.perdio = false;
       this.interrogacion = true;
     }, 5000); 
-
   }
 
 

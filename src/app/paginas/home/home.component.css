@@ -11044,3 +11044,23 @@ html {
 .copyright {
   background-color: #1a252f;
 }
+
+body {
+  /* URL de la imagen de fondo */
+  background-image: url('../../../../src/assets/img/portfolio/background.jpg');
+  
+  /* Ajusta el tamaño de la imagen de fondo para que cubra toda la pantalla */
+  background-size: cover;
+  
+  /* Hace que la imagen no se repita */
+  background-repeat: no-repeat;
+  
+  /* Ajusta la posición de la imagen al centro */
+  background-position: center;
+  
+  /* Asegura que el fondo ocupe toda la ventana */
+  height: 100vh;
+  
+  /* Si quieres que el fondo sea fijo al hacer scroll */
+  background-attachment: fixed;
+}

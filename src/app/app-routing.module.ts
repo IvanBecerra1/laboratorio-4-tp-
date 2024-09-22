@@ -5,6 +5,8 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { QuienSoyComponent } from './components/quien-soy/quien-soy.component';
 import { JuegosComponent } from './components/juegos/juegos.component';
+import { MayorMenorComponent } from './components/juegos/mayor-menor/mayor-menor.component';
+import { AhorcadoComponent } from './components/juegos/ahorcado/ahorcado.component';
 
 const routes: Routes = [
   {
@@ -13,7 +15,9 @@ const routes: Routes = [
       {path : "juegos", component:JuegosComponent},
       {path : "iniciar-sesion", component:LoginComponent},
       {path : "registrarse", component:RegistroComponent},
-      {path : "quien-soy", component:QuienSoyComponent}
+      {path : "quien-soy", component:QuienSoyComponent},
+      {path : "juegos/MayorMenor", component:MayorMenorComponent},
+      {path : "juegos/Ahorcado", component:AhorcadoComponent}
     ],
   },
   // Otras rutas principales si es necesario
